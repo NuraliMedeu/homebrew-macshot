@@ -7,9 +7,11 @@ cask "macshot" do
   desc "Native macOS screenshot tool inspired by Flameshot"
   homepage "https://github.com/sw33tLie/macshot"
 
+  depends_on :macos
+
   app "macshot.app"
 
-  postflight_steps do
+  postflight do
     system_command "/usr/bin/mdimport", args: ["-i", "#{appdir}/macshot.app"]
     system_command "/usr/bin/open", args: ["#{appdir}/macshot.app"]
   end
